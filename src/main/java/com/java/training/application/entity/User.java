@@ -45,7 +45,7 @@ public class User {
     private String password;
 
 
-    @OneToOne(optional = false, mappedBy="user")
+    @OneToOne(optional = false, mappedBy = "user")
     private Order order;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")

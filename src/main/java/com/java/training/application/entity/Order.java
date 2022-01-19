@@ -35,7 +35,7 @@ public class Order {
     private BigDecimal finalPrice;
 
     @OneToOne(optional = false)
-    @JoinColumn(name="user_id", unique = true, nullable = false, updatable = false)
+    @JoinColumn(name = "user_id", unique = true, nullable = false, updatable = false)
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})

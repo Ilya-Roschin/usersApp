@@ -25,14 +25,6 @@ public class UserController {
         this.userService = userService;
     }
 
-//    @GetMapping(value = "/testResponseStatusException")
-//    public Response testResponseStatusException(@RequestParam(required = false, defaultValue = "false") boolean exception) {
-//        if (exception) {
-//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "ResponseStatusException in testResponseStatusException");
-//        }
-//        return new Response("OK");
-//    }
-
     @GetMapping
     public List<UserDto> findAll() {
         log.info("Execute method findAll");
@@ -51,3 +43,10 @@ public class UserController {
         userService.save(userDto);
     }
 }
+//    @GetMapping(value = "/testResponseStatusException")
+//    public Response testResponseStatusException(@RequestParam(required = false, defaultValue = "false") boolean exception) {
+//        if (exception) {
+//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "ResponseStatusException in testResponseStatusException");
+//        }
+//        return new Response("OK");
+//    }

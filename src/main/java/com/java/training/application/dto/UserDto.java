@@ -10,10 +10,10 @@ public class UserDto {
     @NotBlank(message = "id is incorrect")
     private String id;
 
-    @NotBlank(message = "firstName is incorrect")
+    @NotBlank(message = "first name is incorrect")
     private String firstName;
 
-    @NotBlank(message = "lastName is incorrect")
+    @NotBlank(message = "last name is incorrect")
     private String lastName;
 
     @NotBlank(message = "login is incorrect")

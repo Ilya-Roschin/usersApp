@@ -1,5 +1,8 @@
 package com.java.training.application.dto;
 
+import lombok.Data;
+
+@Data
 public class ErrorDto {
 
     private String message;
