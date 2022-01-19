@@ -15,4 +15,10 @@ public class UserDto {
 
     @NotBlank(message = "lastName is incorrect")
     private String lastName;
+
+    @NotBlank(message = "login is incorrect")
+    private String login;
+
+    @NotBlank(message = "password is incorrect")
+    private String password;
 }

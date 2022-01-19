@@ -16,45 +16,38 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class User {
+public class Order {
 
     @Id
-    @Column(name = "id_user")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "final_price")
+    private BigDecimal finalPrice;
 
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "login")
-    private String login;
-
-    @Column(name = "password")
-    private String password;
-
-
-    @OneToOne(optional = false, mappedBy="user")
-    private Order order;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
-    private Set<Review> reviews;
+    @OneToOne(optional = false)
+    @JoinColumn(name="user_id", unique = true, nullable = false, updatable = false)
+    private User user;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "role_id", nullable = false)
-    private Role role;
+    @JoinColumn(name = "song_id", nullable = false)
+    private Song song;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
+    private Set<Payment> payments;
 }
 
-//    @Column(name = "role_id")
-//    private long roleId;
+//    @Column(name = "user_id")
+//    private long userId;
+
+//    @Column(name = "song_id")
+////    private long songId;
