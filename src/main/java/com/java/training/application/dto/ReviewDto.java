@@ -8,5 +8,8 @@ import javax.validation.constraints.NotBlank;
 public class ReviewDto {
 
     @NotBlank(message = "id is incorrect")
-    private String id;
+    private long id;
+
+    @NotBlank(message = "id is incorrect")
+    private String text;
 }

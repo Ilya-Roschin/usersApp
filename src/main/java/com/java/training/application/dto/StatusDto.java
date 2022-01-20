@@ -3,14 +3,13 @@ package com.java.training.application.dto;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
-import java.math.BigDecimal;
 
 @Data
-public class PriceDto {
+public class StatusDto {
 
     @NotBlank(message = "id is incorrect")
-    private String id;
+    private long id;
 
-    @NotBlank(message = "value is incorrect")
-    private BigDecimal value;
+    @NotBlank(message = "status name is incorrect")
+    private String statusName;
 }

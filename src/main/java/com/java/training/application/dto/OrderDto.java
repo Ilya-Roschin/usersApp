@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 public class OrderDto {
 
     @NotBlank(message = "id is incorrect")
-    private String id;
+    private long id;
 
     @NotBlank(message = "final price is incorrect")
     private BigDecimal finalPrice;

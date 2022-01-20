@@ -14,12 +14,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.util.Set;
 
 @Entity
+@Table(name = "order")
 @Getter
 @Setter
 @ToString
@@ -42,12 +42,7 @@ public class Order {
     @JoinColumn(name = "song_id", nullable = false)
     private Song song;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
-    private Set<Payment> payments;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "status_id", nullable = false)
+    private Status status;
 }
-
-//    @Column(name = "user_id")
-//    private long userId;
-
-//    @Column(name = "song_id")
-////    private long songId;

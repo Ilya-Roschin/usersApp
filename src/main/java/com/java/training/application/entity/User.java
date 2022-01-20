@@ -28,7 +28,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @Column(name = "id_user")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
@@ -44,7 +44,6 @@ public class User {
     @Column(name = "password")
     private String password;
 
-
     @OneToOne(optional = false, mappedBy = "user")
     private Order order;
 
@@ -55,6 +54,3 @@ public class User {
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 }
-
-//    @Column(name = "role_id")
-//    private long roleId;

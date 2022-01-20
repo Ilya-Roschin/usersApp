@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 public class SongDto {
 
     @NotBlank(message = "id is incorrect")
-    private String id;
+    private long id;
 
     @NotBlank(message = "song name is incorrect")
     private String songName;

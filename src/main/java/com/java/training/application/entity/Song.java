@@ -15,17 +15,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.Set;
 
 @Entity
+@Table(name = "song")
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
 public class Song {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
@@ -38,14 +38,14 @@ public class Song {
     @Column(name = "album_name")
     private String albumName;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "price_id", nullable = false)
-    private Price price;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "genre_id", nullable = false) // TODO: 20.01.2022 mb remove
+    private Genre genre;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "song")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "song") // TODO: 20.01.2022 cascade type, mappedBy,
     private Set<Review> reviews;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "song")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "song")
     private Set<Order> orders;
 
 

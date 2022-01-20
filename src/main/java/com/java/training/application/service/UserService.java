@@ -22,7 +22,6 @@ public class UserService {
     }
 
     public List<UserDto> findAll() {
-        log.info("Executing method findAll");
         return userRepository.findAll().stream()
                 .map(UserMapper.INSTANCE::toDto)
                 .collect(Collectors.toList());

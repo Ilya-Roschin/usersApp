@@ -5,8 +5,11 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 
 @Data
-public class PaymentDto {
+public class GenreDto {
 
     @NotBlank(message = "id is incorrect")
-    private String id;
+    private long id;
+
+    @NotBlank(message = "genre name is incorrect")
+    private String genreName;
 }
