@@ -7,7 +7,7 @@ public class ErrorDto {
     public ErrorDto() {
     }
 
-    public ErrorDto(String message) {
+    public ErrorDto(final String message) {
         this.message = message;
     }
 
@@ -15,7 +15,7 @@ public class ErrorDto {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(final String message) {
         this.message = message;
     }
 

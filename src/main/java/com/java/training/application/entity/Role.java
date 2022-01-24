@@ -11,40 +11,25 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "role")
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "role")
+    private String roleName;
 
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "login")
-    private String login;
-
-    @Column(name = "password")
-    private String password;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id", nullable = false)
-    private Role role;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private Set<Review> reviews;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
+    private Set<User> users;
 }

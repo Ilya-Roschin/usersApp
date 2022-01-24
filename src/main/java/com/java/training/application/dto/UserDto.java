@@ -8,11 +8,17 @@ import javax.validation.constraints.NotBlank;
 public class UserDto {
 
     @NotBlank(message = "id is incorrect")
-    private String id;
+    private Long id;
 
     @NotBlank(message = "firstName is incorrect")
     private String firstName;
 
     @NotBlank(message = "lastName is incorrect")
     private String lastName;
+
+    @NotBlank(message = "lastName is incorrect")
+    private String login;
+
+    @NotBlank(message = "lastName is incorrect")
+    private String password;
 }

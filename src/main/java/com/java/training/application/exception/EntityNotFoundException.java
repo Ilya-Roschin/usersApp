@@ -1,4 +1,4 @@
-package com.java.training.application.controllerAdivice;
+package com.java.training.application.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
 public class EntityNotFoundException extends RuntimeException {
 
-    @Override
-    public String getMessage() {
-        return "404 Not Found.";
+    public EntityNotFoundException() {
+    }
+
+    public EntityNotFoundException(String message) {
+        super(message);
     }
 }
