@@ -4,7 +4,6 @@ import com.java.training.application.dto.UserDto;
 import com.java.training.application.exception.EntityNotFoundException;
 import com.java.training.application.mapper.UserMapper;
 import com.java.training.application.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,11 +12,16 @@ import java.util.stream.Collectors;
 import static com.java.training.application.Constant.USER_NOT_FOUND_MESSAGE;
 
 @Service
-@RequiredArgsConstructor
+
 public class UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+
+    public UserService(final UserRepository userRepository, final UserMapper userMapper) {
+        this.userRepository = userRepository;
+        this.userMapper = userMapper;
+    }
 
     public List<UserDto> findAll() {
         return userRepository.findAll().stream()

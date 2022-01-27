@@ -1,8 +1,10 @@
 package com.java.training.application.dto;
 
+import com.java.training.application.entity.Review;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import java.util.Set;
 
 @Data
 public class UserDto {
@@ -16,9 +18,7 @@ public class UserDto {
     @NotBlank(message = "lastName is incorrect")
     private String lastName;
 
-    @NotBlank(message = "lastName is incorrect")
-    private String login;
+    private RoleEnum role;
 
-    @NotBlank(message = "lastName is incorrect")
-    private String password;
+    private Set<Review> reviews;
 }

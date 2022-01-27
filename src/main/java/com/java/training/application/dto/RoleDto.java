@@ -11,5 +11,5 @@ public class RoleDto {
     private Long id;
 
     @NotBlank(message = "role name is incorrect")
-    private String roleName;
+    private RoleEnum roleName;
 }
