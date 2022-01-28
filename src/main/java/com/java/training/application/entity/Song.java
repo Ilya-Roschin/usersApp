@@ -31,4 +31,8 @@ public class Song {
 
     @Column(name = "price")
     private BigDecimal price;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "genre_id", nullable = false)
+    private Genre genre;
 }

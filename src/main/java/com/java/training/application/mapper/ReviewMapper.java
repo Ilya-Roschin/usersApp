@@ -2,15 +2,15 @@ package com.java.training.application.mapper;
 
 import com.java.training.application.dto.ReviewDto;
 import com.java.training.application.entity.Review;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
-@Mapper
-public interface ReviewMapper {
+@Component
+public class ReviewMapper {
 
-    ReviewMapper INSTANCE = Mappers.getMapper(ReviewMapper.class);
-
-    ReviewDto toDto(Review review);
-
-    Review toEntity(ReviewDto review);
+    public ReviewDto toDto(final Review review) {
+        final ReviewDto reviewDto = new ReviewDto();
+        reviewDto.setId(review.getId());
+        reviewDto.setText(review.getText());
+        return reviewDto;
+    }
 }

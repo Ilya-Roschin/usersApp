@@ -13,14 +13,13 @@ import static com.java.training.application.Constant.USER_NOT_FOUND_MESSAGE;
 @Component
 public class UserMapper {
 
-    // TODO: 27.01.2022 remove userRepository!!!!!! 
+    // TODO: 27.01.2022 remove Repository!!!!!!
     // TODO: 27.01.2022 use another tool
     private final RoleRepository roleRepository;
 
     public UserMapper(final RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
     }
-
 
     public UserDto toDto(final User user) {
         final UserDto userDto = new UserDto();

@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 public class StatusDto {
 
     @NotBlank(message = "id is incorrect")
-    private Long id;
+    private int id;
 
     // TODO: 28.01.2022  refactor message
     @NotBlank(message = "incorrect")

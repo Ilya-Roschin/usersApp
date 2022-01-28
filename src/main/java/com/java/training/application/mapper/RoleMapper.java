@@ -2,15 +2,16 @@ package com.java.training.application.mapper;
 
 import com.java.training.application.dto.RoleDto;
 import com.java.training.application.entity.Role;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
-@Mapper
-public interface RoleMapper {
+@Component
+public class RoleMapper {
 
-    RoleMapper INSTANCE = Mappers.getMapper(RoleMapper.class);
-
-    RoleDto toDto(Role role);
-
-    Role toEntity(RoleDto roleDto);
+    public RoleDto toDto(final Role role) {
+        final RoleDto roleDto = new RoleDto();
+        roleDto.setId(role.getId());
+        roleDto.setRoleName(role.getRoleName());
+        return roleDto;
+    }
 }
+

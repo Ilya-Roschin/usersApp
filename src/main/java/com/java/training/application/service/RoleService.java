@@ -15,9 +15,12 @@ public class RoleService {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private RoleMapper roleMapper;
+
     public List<RoleDto> findAll() {
         return roleRepository.findAll().stream()
-                .map(RoleMapper.INSTANCE::toDto)
+                .map(roleMapper::toDto)
                 .collect(Collectors.toList());
     }
 }
