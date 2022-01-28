@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 @Table(name = "song")
@@ -35,4 +36,7 @@ public class Song {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "genre_id", nullable = false)
     private Genre genre;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "song")
+    private Set<Review> reviews;
 }

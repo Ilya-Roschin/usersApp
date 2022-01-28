@@ -11,7 +11,6 @@ public class StatusDto {
     @NotBlank(message = "id is incorrect")
     private int id;
 
-    // TODO: 28.01.2022  refactor message
-    @NotBlank(message = "incorrect")
+    @NotBlank(message = "status is incorrect")
     private StatusEnum status;
 }

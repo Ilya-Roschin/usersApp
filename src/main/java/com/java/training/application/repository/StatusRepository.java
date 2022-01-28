@@ -1,10 +1,10 @@
 package com.java.training.application.repository;
 
-import com.java.training.application.entity.Role;
+import com.java.training.application.entity.Status;
+import com.java.training.application.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role, Integer> {
-
+public interface StatusRepository extends JpaRepository<Status, Integer> {
 }
