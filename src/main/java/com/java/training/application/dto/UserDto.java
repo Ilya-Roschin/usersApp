@@ -1,6 +1,7 @@
 package com.java.training.application.dto;
 
 import com.java.training.application.entity.Review;
+import com.java.training.application.status.RoleEnum;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;

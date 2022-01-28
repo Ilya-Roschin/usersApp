@@ -1,16 +1,17 @@
 package com.java.training.application.dto;
 
-import com.java.training.application.status.RoleEnum;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 
 @Data
-public class RoleDto {
+public class SongDto {
 
     @NotBlank(message = "id is incorrect")
     private Long id;
 
-    @NotBlank(message = "role name is incorrect")
-    private RoleEnum roleName;
+    @NotBlank(message = "song name is incorrect")
+    private String songName;
+
+
 }

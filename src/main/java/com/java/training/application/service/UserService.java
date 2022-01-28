@@ -12,11 +12,10 @@ import java.util.stream.Collectors;
 import static com.java.training.application.Constant.USER_NOT_FOUND_MESSAGE;
 
 @Service
-
 public class UserService {
 
-    private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final UserRepository userRepository;
 
     public UserService(final UserRepository userRepository, final UserMapper userMapper) {
         this.userRepository = userRepository;

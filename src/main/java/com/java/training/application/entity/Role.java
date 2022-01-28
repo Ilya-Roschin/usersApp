@@ -1,6 +1,6 @@
 package com.java.training.application.entity;
 
-import com.java.training.application.dto.RoleEnum;
+import com.java.training.application.status.RoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

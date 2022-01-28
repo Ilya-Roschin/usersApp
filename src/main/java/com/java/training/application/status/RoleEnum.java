@@ -1,4 +1,4 @@
-package com.java.training.application.dto;
+package com.java.training.application.status;
 
 public enum RoleEnum {
 

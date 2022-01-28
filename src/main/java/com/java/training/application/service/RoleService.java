@@ -15,8 +15,6 @@ public class RoleService {
     @Autowired
     private RoleRepository roleRepository;
 
-
-
     public List<RoleDto> findAll() {
         return roleRepository.findAll().stream()
                 .map(RoleMapper.INSTANCE::toDto)

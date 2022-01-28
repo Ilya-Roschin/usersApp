@@ -1,6 +1,6 @@
 package com.java.training.application.mapper;
 
-import com.java.training.application.dto.RoleEnum;
+import com.java.training.application.status.RoleEnum;
 import com.java.training.application.dto.UserDto;
 import com.java.training.application.entity.Role;
 import com.java.training.application.entity.User;
@@ -28,6 +28,7 @@ public class UserMapper {
         userDto.setLastName(user.getLastName());
         userDto.setFirstName(user.getFirstName());
         userDto.setRole(user.getRole().getRoleName());
+        userDto.setReviews(user.getReviews());
         return userDto;
     }
 
@@ -37,6 +38,7 @@ public class UserMapper {
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())
                 .role(findRoleIdByRoleName(userDto.getRole()))
+                .reviews(userDto.getReviews())
                 .build();
     }
 
