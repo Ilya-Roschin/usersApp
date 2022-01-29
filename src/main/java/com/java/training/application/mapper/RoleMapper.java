@@ -13,5 +13,12 @@ public class RoleMapper {
         roleDto.setRoleName(role.getRoleName());
         return roleDto;
     }
+
+    public Role toEntity(final RoleDto roleDto) {
+        return Role.builder()
+                .id(roleDto.getId())
+                .roleName(roleDto.getRoleName())
+                .build();
+    }
 }
 

@@ -42,16 +42,7 @@ public class UserMapper {
     }
 
     public Role findRoleIdByRoleName(final RoleEnum roleEnum) {
-        switch (roleEnum) {
-            case ADMIN:
-                return roleRepository.findById(1L)
-                        .orElseThrow(() ->
-                                // TODO: 27.01.2022 remove User_not found -> role not found 
-                                new EntityNotFoundException(USER_NOT_FOUND_MESSAGE));
-            default:
-               return roleRepository.findById(2L)
-                        .orElseThrow(() ->
-                                new EntityNotFoundException(USER_NOT_FOUND_MESSAGE));
-        }
+        return roleRepository.findByRoleName(roleEnum).orElseThrow(() ->
+                new EntityNotFoundException(USER_NOT_FOUND_MESSAGE));
     }
 }

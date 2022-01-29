@@ -13,4 +13,11 @@ public class StatusMapper {
         statusDto.setStatus(status.getStatus());
         return statusDto;
     }
+
+    public Status toEntity(final StatusDto statusDto) {
+        return Status.builder()
+                .id(statusDto.getId())
+                .status(statusDto.getStatus())
+                .build();
+    }
 }

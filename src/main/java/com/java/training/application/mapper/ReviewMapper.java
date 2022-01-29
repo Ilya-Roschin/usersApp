@@ -2,10 +2,13 @@ package com.java.training.application.mapper;
 
 import com.java.training.application.dto.ReviewDto;
 import com.java.training.application.entity.Review;
+import com.java.training.application.exception.EntityNotFoundException;
 import com.java.training.application.repository.SongRepository;
 import com.java.training.application.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import static com.java.training.application.Constant.USER_NOT_FOUND_MESSAGE;
 
 @Component
 public class ReviewMapper {
@@ -30,8 +33,12 @@ public class ReviewMapper {
         final Review review = new Review();
         review.setId(reviewDto.getId());
         review.setText(reviewDto.getText());
-        review.setSong(songRepository.);
-        review.setUser();
-
+        review.setSong(songRepository.findByName(reviewDto.getSongName()).orElseThrow(() ->
+                // TODO: 29.01.2022 create new constant
+                new EntityNotFoundException(USER_NOT_FOUND_MESSAGE + reviewDto.getSongName())));
+        review.setUser(userRepository.findByFirstName(reviewDto.getUserName()).orElseThrow(() ->
+                // TODO: 29.01.2022 create new constant
+                new EntityNotFoundException(USER_NOT_FOUND_MESSAGE + reviewDto.getUserName())));
+        return review;
     }
 }
