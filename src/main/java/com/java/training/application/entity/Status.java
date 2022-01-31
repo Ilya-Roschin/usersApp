@@ -1,7 +1,10 @@
 package com.java.training.application.entity;
 
 import com.java.training.application.status.StatusEnum;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 

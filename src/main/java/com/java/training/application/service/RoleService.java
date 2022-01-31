@@ -23,4 +23,8 @@ public class RoleService {
                 .map(roleMapper::toDto)
                 .collect(Collectors.toList());
     }
+
+    public void save(final RoleDto roleDto) {
+        roleRepository.save(roleMapper.toEntity(roleDto));
+    }
 }

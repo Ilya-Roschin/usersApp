@@ -1,5 +1,6 @@
 package com.java.training.application.entity;
 
+import com.java.training.application.status.GenreEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -7,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "song")
@@ -35,8 +36,8 @@ public class Song {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "genre_id", nullable = false)
-    private Genre genre;
+    private GenreEnum genre;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "song")
-    private Set<Review> reviews;
+    private List<Review> reviews;
 }

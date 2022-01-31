@@ -5,6 +5,7 @@ import com.java.training.application.status.RoleEnum;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -21,5 +22,5 @@ public class UserDto {
 
     private RoleEnum role;
 
-    private Set<Review> reviews;
+    private List<Review> reviews;
 }

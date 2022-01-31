@@ -1,11 +1,11 @@
 package com.java.training.application.mapper;
 
-import com.java.training.application.status.RoleEnum;
 import com.java.training.application.dto.UserDto;
 import com.java.training.application.entity.Role;
 import com.java.training.application.entity.User;
 import com.java.training.application.exception.EntityNotFoundException;
 import com.java.training.application.repository.RoleRepository;
+import com.java.training.application.status.RoleEnum;
 import org.springframework.stereotype.Component;
 
 import static com.java.training.application.Constant.USER_NOT_FOUND_MESSAGE;

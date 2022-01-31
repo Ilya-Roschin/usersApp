@@ -2,7 +2,6 @@ package com.java.training.application.entity;
 
 import com.java.training.application.status.GenreEnum;
 import lombok.*;
-// TODO: 28.01.2022 refactor * import
 
 import javax.persistence.*;
 import java.util.Set;

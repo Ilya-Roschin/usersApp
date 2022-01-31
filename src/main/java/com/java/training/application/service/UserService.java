@@ -1,6 +1,7 @@
 package com.java.training.application.service;
 
 import com.java.training.application.dto.UserDto;
+import com.java.training.application.entity.User;
 import com.java.training.application.exception.EntityNotFoundException;
 import com.java.training.application.mapper.UserMapper;
 import com.java.training.application.repository.UserRepository;
@@ -32,6 +33,12 @@ public class UserService {
         return userMapper.toDto(userRepository.findByFirstName(firstName)
                 .orElseThrow(() ->
                         new EntityNotFoundException(USER_NOT_FOUND_MESSAGE + firstName)));
+    }
+
+    public User findEntityById(final long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() ->
+                        new EntityNotFoundException(USER_NOT_FOUND_MESSAGE));
     }
 
     public void save(final UserDto userDto) {

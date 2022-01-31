@@ -1,7 +1,6 @@
 package com.java.training.application.repository;
 
 import com.java.training.application.entity.Status;
-import com.java.training.application.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
