@@ -1,6 +1,5 @@
 package com.java.training.application.entity;
 
-import com.java.training.application.status.GenreEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,7 +35,7 @@ public class Song {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "genre_id", nullable = false)
-    private GenreEnum genre;
+    private Genre genre;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "song")
     private List<Review> reviews;

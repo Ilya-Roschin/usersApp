@@ -5,9 +5,7 @@ import com.java.training.application.mapper.ReviewMapper;
 import com.java.training.application.repository.ReviewRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,12 +28,15 @@ public class ReviewService {
                 .collect(Collectors.toList());
     }
 
-    public Set<ReviewDto> findAllReviewsByUserId(long userId) {
-        return (Set<ReviewDto>) userService.findEntityById(userId)
+    public List<ReviewDto> findAllReviewsByUserId(long userId) {
+        return userService.findEntityById(userId)
                 .getReviews()
                 .stream()
-                .map(reviewMapper::toDto);
+                .map(reviewMapper::toDto)
+                .collect(Collectors.toList());
     }
 
-
+    public void save(final ReviewDto reviewDto) {
+        reviewRepository.save(reviewMapper.toEntity(reviewDto));
+    }
 }

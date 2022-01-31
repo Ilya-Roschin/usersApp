@@ -1,12 +1,16 @@
 package com.java.training.application.mapper;
 
 import com.java.training.application.dto.UserDto;
+import com.java.training.application.entity.Review;
 import com.java.training.application.entity.Role;
 import com.java.training.application.entity.User;
 import com.java.training.application.exception.EntityNotFoundException;
 import com.java.training.application.repository.RoleRepository;
 import com.java.training.application.status.RoleEnum;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Set;
 
 import static com.java.training.application.Constant.USER_NOT_FOUND_MESSAGE;
 
@@ -27,7 +31,7 @@ public class UserMapper {
         userDto.setLastName(user.getLastName());
         userDto.setFirstName(user.getFirstName());
         userDto.setRole(user.getRole().getRoleName());
-        userDto.setReviews(user.getReviews());
+        userDto.setReviews((List<Review>) user.getReviews());
         return userDto;
     }
 
@@ -36,12 +40,12 @@ public class UserMapper {
                 .id(userDto.getId())
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())
-                .role(findRoleIdByRoleName(userDto.getRole()))
-                .reviews(userDto.getReviews())
+                .role(findRoleByRoleName(userDto.getRole()))
+                .reviews((Set<Review>) userDto.getReviews())
                 .build();
     }
 
-    public Role findRoleIdByRoleName(final RoleEnum roleEnum) {
+    public Role findRoleByRoleName(final RoleEnum roleEnum) {
         return roleRepository.findByRoleName(roleEnum).orElseThrow(() ->
                 new EntityNotFoundException(USER_NOT_FOUND_MESSAGE));
     }

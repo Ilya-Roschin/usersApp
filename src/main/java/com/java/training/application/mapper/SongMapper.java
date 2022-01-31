@@ -1,10 +1,13 @@
 package com.java.training.application.mapper;
 
 import com.java.training.application.dto.SongDto;
+import com.java.training.application.entity.Genre;
 import com.java.training.application.entity.Review;
 import com.java.training.application.entity.Song;
 import com.java.training.application.exception.EntityNotFoundException;
+import com.java.training.application.repository.GenreRepository;
 import com.java.training.application.repository.ReviewRepository;
+import com.java.training.application.status.GenreEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,12 +23,15 @@ public class SongMapper {
     @Autowired
     private ReviewRepository reviewRepository;
 
+    @Autowired
+    private GenreRepository genreRepository;
+
     public SongDto toDto(final Song song) {
         final SongDto songDto = new SongDto();
         songDto.setId(song.getId());
         songDto.setSongName(song.getName());
         songDto.setAlbum(song.getAlbum());
-        songDto.setGenreEnum(song.getGenre());
+        songDto.setGenreEnum(song.getGenre().getGenre());
         songDto.setGroup(song.getGroup());
         songDto.setReviewsId(song.getReviews().stream().
                 map(Review::getId)
@@ -38,10 +44,10 @@ public class SongMapper {
                 .id(songDto.getId())
                 .name(songDto.getSongName())
                 .album(songDto.getAlbum())
-                .genre(songDto.getGenreEnum())
+                .genre(findGenreByName(songDto.getGenreEnum()))
                 .group(songDto.getGroup())
                 .price(songDto.getPrice())
-                .reviews(findReviewsById(songDto.getReviewsId()))
+                .reviews( findReviewsById(songDto.getReviewsId()))
                 .build();
     }
 
@@ -53,6 +59,12 @@ public class SongMapper {
         }
         return reviews;
     }
+
+    public Genre findGenreByName(final GenreEnum genreEnum) {
+        return genreRepository.findByGenre(genreEnum).orElseThrow(() ->
+                new EntityNotFoundException(USER_NOT_FOUND_MESSAGE));
+    }
+
 
 
 }
