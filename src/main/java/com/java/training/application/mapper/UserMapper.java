@@ -9,6 +9,7 @@ import com.java.training.application.repository.RoleRepository;
 import com.java.training.application.status.RoleEnum;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -31,7 +32,9 @@ public class UserMapper {
         userDto.setLastName(user.getLastName());
         userDto.setFirstName(user.getFirstName());
         userDto.setRole(user.getRole().getRoleName());
-        userDto.setReviews((List<Review>) user.getReviews());
+        List<Review> foundedReviews = new ArrayList<Review>();
+        foundedReviews.addAll(user.getReviews());
+        userDto.setReviews(foundedReviews);
         return userDto;
     }
 

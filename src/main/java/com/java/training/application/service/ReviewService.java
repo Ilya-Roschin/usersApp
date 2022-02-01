@@ -3,6 +3,7 @@ package com.java.training.application.service;
 import com.java.training.application.dto.ReviewDto;
 import com.java.training.application.mapper.ReviewMapper;
 import com.java.training.application.repository.ReviewRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,15 +12,14 @@ import java.util.stream.Collectors;
 @Service
 public class ReviewService {
 
-    private final ReviewRepository reviewRepository;
-    private final ReviewMapper reviewMapper;
-    private final UserService userService;
+    @Autowired
+    private ReviewRepository reviewRepository;
 
-    public ReviewService(ReviewRepository reviewRepository, ReviewMapper reviewMapper, UserService userService) {
-        this.reviewRepository = reviewRepository;
-        this.reviewMapper = reviewMapper;
-        this.userService = userService;
-    }
+    @Autowired
+    private ReviewMapper reviewMapper;
+
+    @Autowired
+    private UserService userService;
 
 
     public List<ReviewDto> findAll() {
@@ -28,7 +28,7 @@ public class ReviewService {
                 .collect(Collectors.toList());
     }
 
-    public List<ReviewDto> findAllReviewsByUserId(long userId) {
+    public List<ReviewDto> findAllReviewsByUserId(final long userId) {
         return userService.findEntityById(userId)
                 .getReviews()
                 .stream()

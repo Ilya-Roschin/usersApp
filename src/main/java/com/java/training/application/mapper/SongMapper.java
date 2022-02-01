@@ -31,7 +31,8 @@ public class SongMapper {
         songDto.setId(song.getId());
         songDto.setSongName(song.getName());
         songDto.setAlbum(song.getAlbum());
-        songDto.setGenreEnum(song.getGenre().getGenre());
+        final GenreEnum genreEnum = song.getGenre().getGenre();
+        songDto.setGenreEnum(genreEnum);
         songDto.setGroup(song.getGroup());
         songDto.setReviewsId(song.getReviews().stream().
                 map(Review::getId)

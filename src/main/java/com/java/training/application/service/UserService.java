@@ -5,6 +5,7 @@ import com.java.training.application.entity.User;
 import com.java.training.application.exception.EntityNotFoundException;
 import com.java.training.application.mapper.UserMapper;
 import com.java.training.application.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,13 +16,11 @@ import static com.java.training.application.Constant.USER_NOT_FOUND_MESSAGE;
 @Service
 public class UserService {
 
-    private final UserMapper userMapper;
-    private final UserRepository userRepository;
+    @Autowired
+    private  UserMapper userMapper;
 
-    public UserService(final UserRepository userRepository, final UserMapper userMapper) {
-        this.userRepository = userRepository;
-        this.userMapper = userMapper;
-    }
+    @Autowired
+    private  UserRepository userRepository;
 
     public List<UserDto> findAll() {
         return userRepository.findAll().stream()
