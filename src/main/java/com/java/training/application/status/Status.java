@@ -1,6 +1,6 @@
 package com.java.training.application.status;
 
-public enum StatusEnum {
+public enum Status {
 
     CONFIRMED,
     NOT_CONFIRMED;

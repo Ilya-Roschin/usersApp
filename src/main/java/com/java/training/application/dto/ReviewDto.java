@@ -1,10 +1,12 @@
 package com.java.training.application.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 
-@Data
+@Getter
+@Setter
 public class ReviewDto {
 
     @NotBlank(message = "id is incorrect")
@@ -16,7 +18,6 @@ public class ReviewDto {
     @NotBlank(message = "song name is incorrect")
     private String songName;
 
-    // TODO: 28.01.2022 remove first - last name USE "userName"
     @NotBlank(message = "song name is incorrect")
     private String userName;
 }

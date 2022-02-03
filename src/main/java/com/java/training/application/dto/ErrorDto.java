@@ -18,5 +18,4 @@ public class ErrorDto {
     public void setMessage(final String message) {
         this.message = message;
     }
-
 }

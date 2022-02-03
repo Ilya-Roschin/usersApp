@@ -1,6 +1,6 @@
 package com.java.training.application.status;
 
-public enum GenreEnum {
+public enum Genre {
 
     METAL,
     POP_PUNK,

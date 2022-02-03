@@ -1,6 +1,6 @@
 package com.java.training.application.status;
 
-public enum RoleEnum {
+public enum Role {
 
     USER,
     ADMIN;

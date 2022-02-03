@@ -2,38 +2,23 @@ package com.java.training.application.mapper;
 
 import com.java.training.application.dto.UserDto;
 import com.java.training.application.entity.Review;
-import com.java.training.application.entity.Role;
 import com.java.training.application.entity.User;
-import com.java.training.application.exception.EntityNotFoundException;
-import com.java.training.application.repository.RoleRepository;
-import com.java.training.application.status.RoleEnum;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import static com.java.training.application.Constant.USER_NOT_FOUND_MESSAGE;
-
 @Component
 public class UserMapper {
-
-    // TODO: 27.01.2022 remove Repository!!!!!!
-    // TODO: 27.01.2022 use another tool
-    private final RoleRepository roleRepository;
-
-    public UserMapper(final RoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
-    }
 
     public UserDto toDto(final User user) {
         final UserDto userDto = new UserDto();
         userDto.setId(user.getId());
-        userDto.setLastName(user.getLastName());
-        userDto.setFirstName(user.getFirstName());
-        userDto.setRole(user.getRole().getRoleName());
-        List<Review> foundedReviews = new ArrayList<Review>();
-        foundedReviews.addAll(user.getReviews());
+
+        userDto.setUsername(user.getUsername());
+        userDto.setRole(user.getRole());
+        final List<Review> foundedReviews = new ArrayList<>(user.getReviews());
         userDto.setReviews(foundedReviews);
         return userDto;
     }
@@ -41,15 +26,9 @@ public class UserMapper {
     public User toEntity(final UserDto userDto) {
         return User.builder()
                 .id(userDto.getId())
-                .firstName(userDto.getFirstName())
-                .lastName(userDto.getLastName())
-                .role(findRoleByRoleName(userDto.getRole()))
+                .username(userDto.getUsername())
+                .role(userDto.getRole())
                 .reviews((Set<Review>) userDto.getReviews())
                 .build();
-    }
-
-    public Role findRoleByRoleName(final RoleEnum roleEnum) {
-        return roleRepository.findByRoleName(roleEnum).orElseThrow(() ->
-                new EntityNotFoundException(USER_NOT_FOUND_MESSAGE));
     }
 }

@@ -25,20 +25,18 @@ public class ReviewMapper {
         reviewDto.setText(review.getText());
         reviewDto.setSongName(review.getSong().getName());
         // TODO: 28.01.2022 remove FirstName USE userName
-        reviewDto.setUserName(review.getUser().getFirstName());
+        reviewDto.setUserName(review.getUser().getUsername());
         return reviewDto;
     }
 
     public Review toEntity(final ReviewDto reviewDto) {
-        final Review review = new Review();
-        review.setId(reviewDto.getId());
-        review.setText(reviewDto.getText());
-        review.setSong(songRepository.findByName(reviewDto.getSongName()).orElseThrow(() ->
-                // TODO: 29.01.2022 create new constant
-                new EntityNotFoundException(USER_NOT_FOUND_MESSAGE + reviewDto.getSongName())));
-        review.setUser(userRepository.findByFirstName(reviewDto.getUserName()).orElseThrow(() ->
-                // TODO: 29.01.2022 create new constant
-                new EntityNotFoundException(USER_NOT_FOUND_MESSAGE + reviewDto.getUserName())));
-        return review;
+        return Review.builder()
+                .id(reviewDto.getId())
+                .text(reviewDto.getText())
+                .song(songRepository.findByName(reviewDto.getSongName()).orElseThrow(() ->
+                        new EntityNotFoundException(USER_NOT_FOUND_MESSAGE + reviewDto.getSongName())))
+                .user(userRepository.findByUsername(reviewDto.getUserName()).orElseThrow(() ->
+                        new EntityNotFoundException(USER_NOT_FOUND_MESSAGE + reviewDto.getUserName())))
+                .build();
     }
 }

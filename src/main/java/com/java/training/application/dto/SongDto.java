@@ -1,13 +1,15 @@
 package com.java.training.application.dto;
 
-import com.java.training.application.status.GenreEnum;
-import lombok.Data;
+import com.java.training.application.status.Genre;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 public class SongDto {
 
     @NotBlank(message = "id is incorrect")
@@ -26,7 +28,7 @@ public class SongDto {
     private BigDecimal price;
 
     @NotBlank(message = "genreEnum is incorrect")
-    private GenreEnum genreEnum;
+    private Genre genre;
 
     // TODO: 31.01.2022 костыль)
     @NotBlank(message = "review is incorrect")

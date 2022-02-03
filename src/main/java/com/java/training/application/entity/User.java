@@ -1,5 +1,6 @@
 package com.java.training.application.entity;
 
+import com.java.training.application.status.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,14 +21,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "username")
+    private String username;
 
-    @Column(name = "last_name")
-    private String lastName;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id", nullable = false)
+    @Column(name = "role_id")
+    @Enumerated(EnumType.ORDINAL)
     private Role role;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")

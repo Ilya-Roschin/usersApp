@@ -29,7 +29,7 @@ public class UserService {
     }
 
     public UserDto findByFirstName(final String firstName) {
-        return userMapper.toDto(userRepository.findByFirstName(firstName)
+        return userMapper.toDto(userRepository.findByUsername(firstName)
                 .orElseThrow(() ->
                         new EntityNotFoundException(USER_NOT_FOUND_MESSAGE + firstName)));
     }
