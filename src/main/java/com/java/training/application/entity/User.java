@@ -6,7 +6,17 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -27,6 +37,9 @@ public class User {
     @Column(name = "role_id")
     @Enumerated(EnumType.ORDINAL)
     private Role role;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "song")
+    private List<Order> orders;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private Set<Review> reviews;

@@ -41,13 +41,13 @@ public class SongMapper {
                 .genre(songDto.getGenre())
                 .group(songDto.getGroup())
                 .price(songDto.getPrice())
-                .reviews( findReviewsById(songDto.getReviewsId()))
+                .reviews(findReviewsById(songDto.getReviewsId()))
                 .build();
     }
 
     private List<Review> findReviewsById(final List<Long> reviewId) {
-        List<Review> reviews = new ArrayList<>();
-        for (long id : reviewId) {
+        final List<Review> reviews = new ArrayList<>();
+        for (final long id : reviewId) {
             reviews.add(reviewRepository.findById(id).orElseThrow(() ->
                     new EntityNotFoundException(USER_NOT_FOUND_MESSAGE)));
         }

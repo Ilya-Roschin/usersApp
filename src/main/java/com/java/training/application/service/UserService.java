@@ -17,10 +17,10 @@ import static com.java.training.application.Constant.USER_NOT_FOUND_MESSAGE;
 public class UserService {
 
     @Autowired
-    private  UserMapper userMapper;
+    private UserMapper userMapper;
 
     @Autowired
-    private  UserRepository userRepository;
+    private UserRepository userRepository;
 
     public List<UserDto> findAll() {
         return userRepository.findAll().stream()
@@ -28,7 +28,7 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public UserDto findByFirstName(final String firstName) {
+    public UserDto findByUsername(final String firstName) {
         return userMapper.toDto(userRepository.findByUsername(firstName)
                 .orElseThrow(() ->
                         new EntityNotFoundException(USER_NOT_FOUND_MESSAGE + firstName)));

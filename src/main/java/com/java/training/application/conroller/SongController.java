@@ -27,7 +27,7 @@ public class SongController {
     }
 
     @GetMapping(path = "/{id}")
-    public SongDto findByFirstName(@PathVariable final long id) {
+    public SongDto findById(@PathVariable final long id) {
         return songService.findById(id);
     }
 }

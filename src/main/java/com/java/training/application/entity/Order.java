@@ -1,6 +1,6 @@
 package com.java.training.application.entity;
 
-import com.java.training.application.status.Genre;
+import com.java.training.application.status.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,42 +14,37 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.math.BigDecimal;
-import java.util.List;
 
 @Entity
-@Table(name = "song")
+@Table(name = "order")
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Song {
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "group")
-    private String group;
-
-    @Column(name = "album")
-    private String album;
-
-    @Column(name = "price")
-    private BigDecimal price;
-
-    @Column(name = "genre_id")
+    @Column(name = "status_id")
     @Enumerated(EnumType.ORDINAL)
-    private Genre genre;
+    private Status status;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "song")
-    private List<Review> reviews;
+//    @Column(name = "status_id")
+//    private Long songId;
+//
+//    @Column(name = "status_id")
+//    private Long userId;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "song")
-    private List<Order> orders;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "song_id", nullable = false)
+    private Song song;
 }
