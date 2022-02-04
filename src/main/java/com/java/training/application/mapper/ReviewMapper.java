@@ -23,8 +23,7 @@ public class ReviewMapper {
         final ReviewDto reviewDto = new ReviewDto();
         reviewDto.setId(review.getId());
         reviewDto.setText(review.getText());
-        reviewDto.setSongName(review.getSong().getName());
-        // TODO: 28.01.2022 remove FirstName USE userName
+        reviewDto.setSongId(review.getId());
         reviewDto.setUserName(review.getUser().getUsername());
         return reviewDto;
     }
@@ -33,8 +32,8 @@ public class ReviewMapper {
         return Review.builder()
                 .id(reviewDto.getId())
                 .text(reviewDto.getText())
-                .song(songRepository.findByName(reviewDto.getSongName()).orElseThrow(() ->
-                        new EntityNotFoundException(USER_NOT_FOUND_MESSAGE + reviewDto.getSongName())))
+                .song(songRepository.findById(reviewDto.getSongId()).orElseThrow(() ->
+                                new EntityNotFoundException(USER_NOT_FOUND_MESSAGE + reviewDto.getUserName())))
                 .user(userRepository.findByUsername(reviewDto.getUserName()).orElseThrow(() ->
                         new EntityNotFoundException(USER_NOT_FOUND_MESSAGE + reviewDto.getUserName())))
                 .build();

@@ -30,7 +30,7 @@ public class SongDto {
     @NotBlank(message = "genreEnum is incorrect")
     private Genre genre;
 
-    // TODO: 31.01.2022 костыль)
-    @NotBlank(message = "review is incorrect")
-    private List<Long> reviewsId;
+    private List<Long> reviewIds;
+
+    private List<Long> orderIds;
 }

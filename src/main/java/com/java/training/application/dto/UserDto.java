@@ -1,6 +1,5 @@
 package com.java.training.application.dto;
 
-import com.java.training.application.entity.Review;
 import com.java.training.application.status.Role;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,5 +19,7 @@ public class UserDto {
 
     private Role role;
 
-    private List<Review> reviews;
+    private List<Long> reviewIds;
+
+    private List<Long> orderIds;
 }

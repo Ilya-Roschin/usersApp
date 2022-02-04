@@ -34,12 +34,6 @@ public class Order {
     @Enumerated(EnumType.ORDINAL)
     private Status status;
 
-//    @Column(name = "status_id")
-//    private Long songId;
-//
-//    @Column(name = "status_id")
-//    private Long userId;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;

@@ -15,8 +15,8 @@ public class ReviewDto {
     @NotBlank(message = "text is incorrect")
     private String text;
 
-    @NotBlank(message = "song name is incorrect")
-    private String songName;
+    @NotBlank(message = "song id")
+    private Long songId;
 
     @NotBlank(message = "song name is incorrect")
     private String userName;

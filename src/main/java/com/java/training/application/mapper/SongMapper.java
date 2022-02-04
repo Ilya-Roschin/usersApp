@@ -27,7 +27,7 @@ public class SongMapper {
         songDto.setAlbum(song.getAlbum());
         songDto.setGenre(song.getGenre());
         songDto.setGroup(song.getGroup());
-        songDto.setReviewsId(song.getReviews().stream().
+        songDto.setReviewIds(song.getReviews().stream().
                 map(Review::getId)
                 .collect(Collectors.toList()));
         return songDto;
@@ -41,7 +41,7 @@ public class SongMapper {
                 .genre(songDto.getGenre())
                 .group(songDto.getGroup())
                 .price(songDto.getPrice())
-                .reviews(findReviewsById(songDto.getReviewsId()))
+                .reviews(findReviewsById(songDto.getReviewIds()))
                 .build();
     }
 
