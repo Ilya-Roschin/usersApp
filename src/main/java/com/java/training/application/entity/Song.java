@@ -14,10 +14,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "song")
@@ -50,6 +53,7 @@ public class Song {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "song")
     private List<Review> reviews;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "song")
-    private List<Order> orders;
+    @ManyToMany(mappedBy = "songs")
+    private Set<Order> orders = new HashSet<>();
+
 }

@@ -38,7 +38,7 @@ public class User {
     @Enumerated(EnumType.ORDINAL)
     private Role role;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "song")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Order> orders;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")

@@ -15,8 +15,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "order")
@@ -38,7 +42,21 @@ public class Order {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "song_id", nullable = false)
-    private Song song;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "song_has_order",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "song_id"))
+    private List<Song> songs = new ArrayList<>();
+
+    public void addSong(final Song song) {
+        this.songs.add(song);
+        song.getOrders().add(this);
+    }
+
+    public void removeSong(final Song song){
+        this.songs.remove(song);
+        song.getOrders().remove(this);
+    }
+
+
 }
