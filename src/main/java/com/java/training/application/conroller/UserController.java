@@ -35,18 +35,18 @@ public class UserController {
         return userService.findByUsername(username);
     }
 
-    @DeleteMapping("/{username}")
-    public String deleteById(@PathVariable("username") String username) {
-        userService.deleteByUsername(username);
-        return "redirect:/cars";
+    @DeleteMapping("id/{id}")
+    public void deleteById(@PathVariable("id") final Long id) {
+        userService.deleteById(id);
     }
 
-
+    @DeleteMapping("username/{username}")
+    public void deleteById(@PathVariable("username") final String username) {
+        userService.deleteByUsername(username);
+    }
 
     @PostMapping
     public void save(@RequestBody final UserDto userDto) {
         userService.save(userDto);
     }
-
-
 }

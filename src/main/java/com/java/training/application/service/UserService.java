@@ -45,10 +45,23 @@ public class UserService {
                 .orElseThrow(() ->
                         new EntityNotFoundException(USER_NOT_FOUND_MESSAGE));
     }
+
     @Transactional
     public void deleteByUsername(final String username) {
         userRepository.deleteByUsername(username);
     }
+
+    @Transactional
+    public void deleteById(final Long id) {
+        userRepository.deleteById(id);
+    }
+
+    public void update(final UserDto userDto) {
+        final User user = userRepository.findById(userDto.getId()).orElseThrow(() ->
+                new EntityNotFoundException(USER_NOT_FOUND_MESSAGE));
+        user.setRole(userDto.getRole());
+    }
+
 
     public void save(final UserDto userDto) {
         userRepository.save(userMapper.toEntity(userDto));
