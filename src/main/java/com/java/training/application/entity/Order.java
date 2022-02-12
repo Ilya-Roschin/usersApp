@@ -21,11 +21,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "order")
+@Table(name = "basket")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -52,7 +51,7 @@ public class Order {
     @JoinTable(name = "song_has_order",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "song_id"))
-    private List<Song> songs = new ArrayList<>();
+    private List<Song> songs;
 
     public void addSong(final Song song) {
         this.songs.add(song);

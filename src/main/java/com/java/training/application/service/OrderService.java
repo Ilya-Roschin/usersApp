@@ -3,6 +3,7 @@ package com.java.training.application.service;
 import com.java.training.application.dto.OrderDto;
 import com.java.training.application.entity.Order;
 import com.java.training.application.entity.Song;
+import com.java.training.application.exception.EntityNotFoundException;
 import com.java.training.application.mapper.OrderMapper;
 import com.java.training.application.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.java.training.application.Constant.USER_NOT_FOUND_MESSAGE;
 
 @Service
 public class OrderService {
@@ -25,7 +28,7 @@ public class OrderService {
     @Autowired
     private OrderMapper orderMapper;
 
-    public void findFinalPrice(final Order order) {
+    public void updateFinalPrice(final Order order) {
         final BigDecimal finalPrice = new BigDecimal("0");
         order.getSongs().stream()
                 .map(Song::getPrice)
@@ -45,6 +48,11 @@ public class OrderService {
                 .stream()
                 .map(orderMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    public OrderDto findById(final long id) {
+        return orderMapper.toDto(orderRepository.findById(id).orElseThrow(() ->
+                new EntityNotFoundException(USER_NOT_FOUND_MESSAGE)));
     }
 
     public void save(final OrderDto orderDto) {

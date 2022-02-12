@@ -7,6 +7,7 @@ import com.java.training.application.mapper.UserMapper;
 import com.java.training.application.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,6 +29,11 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
+    public UserDto findById(final long id) {
+        return userMapper.toDto(userRepository.findById(id).orElseThrow(() ->
+                new EntityNotFoundException(USER_NOT_FOUND_MESSAGE)));
+    }
+
     public UserDto findByUsername(final String firstName) {
         return userMapper.toDto(userRepository.findByUsername(firstName)
                 .orElseThrow(() ->
@@ -38,6 +44,10 @@ public class UserService {
         return userRepository.findById(id)
                 .orElseThrow(() ->
                         new EntityNotFoundException(USER_NOT_FOUND_MESSAGE));
+    }
+    @Transactional
+    public void deleteByUsername(final String username) {
+        userRepository.deleteByUsername(username);
     }
 
     public void save(final UserDto userDto) {
