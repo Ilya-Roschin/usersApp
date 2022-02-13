@@ -33,7 +33,7 @@ public class ReviewMapper {
                 .id(reviewDto.getId())
                 .text(reviewDto.getText())
                 .song(songRepository.findById(reviewDto.getSongId()).orElseThrow(() ->
-                                new EntityNotFoundException(USER_NOT_FOUND_MESSAGE + reviewDto.getUserName())))
+                        new EntityNotFoundException(USER_NOT_FOUND_MESSAGE + reviewDto.getUserName())))
                 .user(userRepository.findByUsername(reviewDto.getUserName()).orElseThrow(() ->
                         new EntityNotFoundException(USER_NOT_FOUND_MESSAGE + reviewDto.getUserName())))
                 .build();

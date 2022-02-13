@@ -8,6 +8,7 @@ import com.java.training.application.mapper.OrderMapper;
 import com.java.training.application.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -33,7 +34,7 @@ public class OrderService {
         order.getSongs().stream()
                 .map(Song::getPrice)
                 .forEach(finalPrice::add);
-                order.setFinalPrice(finalPrice.setScale(2, RoundingMode.CEILING));
+        order.setFinalPrice(finalPrice.setScale(2, RoundingMode.CEILING));
     }
 
     public List<OrderDto> findAll() {
@@ -53,6 +54,11 @@ public class OrderService {
     public OrderDto findById(final long id) {
         return orderMapper.toDto(orderRepository.findById(id).orElseThrow(() ->
                 new EntityNotFoundException(USER_NOT_FOUND_MESSAGE)));
+    }
+
+    @Transactional
+    public void deleteById(final Long id) {
+        orderRepository.deleteById(id);
     }
 
     public void save(final OrderDto orderDto) {

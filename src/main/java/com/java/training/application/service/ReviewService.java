@@ -6,6 +6,7 @@ import com.java.training.application.mapper.ReviewMapper;
 import com.java.training.application.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,6 +43,11 @@ public class ReviewService {
     public ReviewDto findById(final long id) {
         return reviewMapper.toDto(reviewRepository.findById(id).orElseThrow(() ->
                 new EntityNotFoundException(USER_NOT_FOUND_MESSAGE)));
+    }
+
+    @Transactional
+    public void deleteById(final Long id) {
+        reviewRepository.deleteById(id);
     }
 
     public void save(final ReviewDto reviewDto) {

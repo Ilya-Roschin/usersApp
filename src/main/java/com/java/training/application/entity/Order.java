@@ -58,10 +58,8 @@ public class Order {
         song.getOrders().add(this);
     }
 
-    public void removeSong(final Song song){
+    public void removeSong(final Song song) {
         this.songs.remove(song);
         song.getOrders().remove(this);
     }
-
-
 }

@@ -5,6 +5,7 @@ import com.java.training.application.entity.User;
 import com.java.training.application.exception.EntityNotFoundException;
 import com.java.training.application.mapper.UserMapper;
 import com.java.training.application.repository.UserRepository;
+import com.java.training.application.status.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,12 +57,16 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public void update(final UserDto userDto) {
-        final User user = userRepository.findById(userDto.getId()).orElseThrow(() ->
+    @Transactional
+    public void update(final Long id, final String username, final Role role) {
+        final User user = userRepository.findById(id).orElseThrow(() ->
                 new EntityNotFoundException(USER_NOT_FOUND_MESSAGE));
-        user.setRole(userDto.getRole());
-    }
 
+        if (userRepository.findByUsername(username).isEmpty()) {
+            user.setUsername(username);
+        }
+        user.setRole(role);
+    }
 
     public void save(final UserDto userDto) {
         userRepository.save(userMapper.toEntity(userDto));

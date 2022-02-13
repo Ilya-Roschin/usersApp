@@ -3,6 +3,7 @@ package com.java.training.application.conroller;
 import com.java.training.application.dto.ReviewDto;
 import com.java.training.application.service.ReviewService;
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +28,11 @@ public class ReviewController {
     @GetMapping(path = "/{id}")
     public ReviewDto findById(@PathVariable final long id) {
         return reviewService.findById(id);
+    }
+
+    @DeleteMapping("id/{id}")
+    public void deleteById(@PathVariable("id") final Long id) {
+        reviewService.deleteById(id);
     }
 
     @PostMapping
